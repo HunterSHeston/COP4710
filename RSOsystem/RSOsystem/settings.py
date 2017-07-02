@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+from django.core.urlresolvers import reverse_lazy
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -26,6 +28,9 @@ SECRET_KEY = '1z$!vj%_9s=(3lb^ofdsq=ua=f_e#1mh_5+rvl4199#927(rp='
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+#login redirect  |  the default is "accounts/profile/"
+LOGIN_REDIRECT_URL = reverse_lazy('index')
 
 
 # Application definition
@@ -77,7 +82,7 @@ WSGI_APPLICATION = 'RSOsystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql",
-        'NAME': 'rso_system',
+        'NAME': 'rsoSystem',
         'USER': 'hunter',
         'PASSWORD': 'password',
         'HOST': '',
