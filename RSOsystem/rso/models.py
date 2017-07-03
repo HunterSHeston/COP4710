@@ -9,16 +9,21 @@ import datetime
 
 #
 
+# queries  can be done with'objects'
+# someModel.bojects.all()  yields all objects
+# someModel.bojects.filter( somefield='valueOfField' )  yields objects with column: someField and value: value of field
+# someModel.bojects.exclude( somefield='valueOfField' ) exclude objects with column: someField and value: value of field
+
+
 
 class Admin(models.Model):
-    aname = models.CharField(max_length=20)
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         )
 
     def __str__(self):
-        return self.user.name
+        return self.user.username
 
 
 class Student(models.Model):
@@ -28,7 +33,7 @@ class Student(models.Model):
         )
 
     def __str__(self):
-        return self.user.name
+        return self.ISA.username
 
 
 class Rso(models.Model):
@@ -36,6 +41,6 @@ class Rso(models.Model):
     description = models.TextField()
     # created = models.DateField('date created', auto_now_add=True)
     users = models.ManyToManyField(Student)
-    
+
     def __str__(self):
         return self.name

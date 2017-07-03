@@ -5,14 +5,21 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
-
+from .models import Student, Admin, Rso
 
 def index(request):
-    return HttpResponse('Logged in with name %s' % request.user.username)
+    all_students = Student.objects.all()
+    html = ''
+
+    for student in all_students:
+        url =  str(student.id) + '/'
+        html += '<a href="' + url + '">' + student.ISA.username + '</a><br>'
+
+    return HttpResponse(html)
 
 
-def detail(request, group_id):
-    return HttpResponse("You're looking at group %s" %  group_id)
+def details(request, rso_id):
+    return HttpResponse('<h2>user: %s </h2><br><h1>id: %s</h1>' % (request.user.username, str(rso_id)))
 
 # def loginView(request):
 #     userName = request.POST['username']
