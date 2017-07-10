@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 #login redirect  |  the default is "accounts/profile/"
-LOGIN_REDIRECT_URL = reverse_lazy('index')
+LOGIN_REDIRECT_URL = reverse_lazy('rso:index')
 
 
 # Application definition
@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'RSOsystem.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql",
-        'NAME': 'rsoSystem',
+        'NAME': 'rso_system',
         'USER': 'hunter',
         'PASSWORD': 'password',
         'HOST': '',

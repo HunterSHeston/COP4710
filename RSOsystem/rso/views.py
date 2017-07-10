@@ -1,36 +1,100 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
 
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
-# Create your views here.
-from .models import Student, Admin, Rso
-
-def index(request):
-    all_students = Student.objects.all()
-    html = ''
-
-    for student in all_students:
-        url =  str(student.id) + '/'
-        html += '<a href="' + url + '">' + student.ISA.username + '</a><br>'
-
-    return HttpResponse(html)
+from django.views import generic
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from .models import Student
 
 
-def details(request, rso_id):
-    return HttpResponse('<h2>user: %s </h2><br><h1>id: %s</h1>' % (request.user.username, str(rso_id)))
+class IndexView(generic.ListView):
+    template_name = 'rso/index.html'
 
-# def loginView(request):
-#     userName = request.POST['username']
-#     password = request.POST['password']
-#     user = authenticate(request, username=username, password=password)
-    
-#     if user is not None:
-#         login(request, user)
-#         print 'logged in'
-#     else:
-#         print 'not a user'
+    def get_queryset(self):
+        return Student.objects.all()
 
-# def logoutView(request):
-#     logout(request)
+
+class DetailView(generic.DetailView):
+    model = Student
+    template_name = 'rso/detail.html'
+
+
+class StudentCreate(CreateView):
+    model = Student
+    fields = ['username', 'firstname', 'lastname', 'email']
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# # -*- coding: utf-8 -*-
+# from __future__ import unicode_literals
+#
+# from django.shortcuts import render, get_object_or_404, redirect
+# from django.contrib.auth import authenticate, login
+# from django.views.generic import View
+# # from .forms import UserForm
+# from .models import Student, Admin, Rso
+
+
+# def index(request):
+#     allStudents = Student.objects.all()
+#     context = {'allStudents': allStudents}
+#     return render(request, 'rso/index.html', context)
+#
+#
+#
+# def detail(request, uID):
+#     student = get_object_or_404(Student, pk=uID)
+#     context = {
+#             'id': student.ISA.id,
+#             'first_name': student.ISA.first_name,
+#             'last_name': student.ISA.last_name,
+#             'email': student.ISA.email,
+#
+#         }
+#     return render(request, 'rso/detail.html', context)
+
+# class UserFormView(View):
+#     form_class = UserForm
+#     template_name = 'rso/registration_form.html'
+#
+#     #display a blank form
+#     def get(self, request):
+#         form = self.form_class(None)
+#         return render(request, self.template_name, {'form': form})
+#
+#     def post(self, request):
+#         form = self.form_class(request.POST)
+#
+#         if form.is_valid():
+#             user = form.save(commit=False)
+#
+#             # cleaned (normalized) data
+#             username = form.cleaned_data['username']
+#             password = form.cleaned_data['password']
+#             user.set_password(password)
+#             user.save()
+#
+#             # returns User objects if credentials are correct
+#             user = authenticate(username=username, password=password)
+#
+#             if user is not None:
+#
+#                 if user.is_active:
+#                     login(request, user)
+#                     return redirect('rso:index')
+#         return render(request, self.template_name, {'form':form})
+
+
+

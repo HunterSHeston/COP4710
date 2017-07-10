@@ -1,0 +1,41 @@
+
+Events:
+    type/category: social, fundraising, tech talk etc...
+    Events are official, not all events around uni are included
+    Public:
+        Anyone can see
+    Private:
+        can be seen by those in the University
+    RSO:
+        Can be seen by members of the RSO
+
+    non-rso events:
+        can be created without a RSO. Must be approved by superuser of University
+
+    Should have comments
+
+Users:
+    Any student can register. (obtain user id and pass)
+
+    Students:
+        Uses the application to look up event information
+            1.by location
+            2.by RSO
+            3.by University
+
+        Relationships:
+            1.create a new RSO with 5 other students of the same domain name, one must become the admin
+
+
+    Admin:
+        Owns an RSO that can host events
+
+        Relationships:
+             1.Can create events: Name, Category, description, time, date, location, contact, phone, email
+             2.Affiliated with one university
+             3.Affiliated with one or more RSO
+
+
+    Super Admin:
+        Creates a university: name, location, description, number of students, pictures,et
+

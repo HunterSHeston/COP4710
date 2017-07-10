@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+    {% if object_list %}
+
+        <ul>
+            {% for student in object_list %}
+            <li><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.ISA.username }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>There are no students</h3>
+    {% endif %}
+{% endblock %}
