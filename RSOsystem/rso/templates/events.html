@@ -1,0 +1,9 @@
+{% include 'partials/header.html' %}
+
+  <ul>
+      {% for event in events %}
+        <li><a href="/events/details/{{event.id}}">{{event.name}}</a>: {{event.description}}</li>
+      {% endfor %}
+  </ul>
+
+{% include 'partials/footer.html' %}
