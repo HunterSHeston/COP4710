@@ -2,12 +2,13 @@
 
 {% block title %}Home{% endblock %}
 
+
 {% block content %}
-    {% if object_list %}
+    {% if allStudents %}
 
         <ul>
-            {% for student in object_list %}
-            <li><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.ISA.username }}</a></li>
+            {% for student in allStudents %}
+            <li><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.user.username }}</a></li>
             {% endfor %}
         </ul>
     {% else %}

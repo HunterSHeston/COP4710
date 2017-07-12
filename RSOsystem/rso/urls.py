@@ -15,24 +15,24 @@ app_name = 'rso'
 urlpatterns = [
 
     # using generic views 'as_view()'
-    url(r'^$', views.IndexView.as_view(), name='index'),
-
-    # pk -> primary key
-    url(r'^(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name='detail'),
-
-    # /rso/student/add
-    url(r'^student/add/$', views.StudentCreate.as_view(), name='student-add'),
-
-
-
-
-    # # /rso/
     # url(r'^$', views.index, name='index'),
     #
-    # # /rso/24
-    # url(r'^(?P<uID>[0-9]{1})/$', views.detail, name='detail'),
+    # # pk -> primary key
+    # url(r'^(?P<pk>[0-9]+)/$', views.detail, name='detail'),
     #
-    # # url for user login
-    # # url(r'^register', views.UserForm, name='register')
+    # # /rso/student/add
+    # url(r'^student/add/$', views.StudentCreate.as_view(), name='student-add'),
+
+
+
+
+    # /rso/
+    url(r'^$', views.index, name='index'),
+
+    # /rso/24
+    url(r'^(?P<uID>[0-9]{1})/$', views.detail, name='detail'),
+
+    # url for user login
+    # url(r'^register', views.UserForm, name='register')
 
 ]
