@@ -4,7 +4,8 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 # from .forms import UserForm
 from .models import Student, Admin, RsoGroup
-
+from django.contrib.auth.models import User
+from django.http import HttpResponse
 
 def index(request):
     allStudents = Student.objects.all()
@@ -15,15 +16,36 @@ def index(request):
 
 
 def detail(request, uID):
-    student = get_object_or_404(Student, pk=uID)
+    user = get_object_or_404(User, pk=uID)
 
     context = {
-            'id': student.user.id,
-            'first_name': student.user.first_name,
-            'last_name': student.user.last_name,
-            'email': student.user.email,
+            'id': user.id,
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
         }
     return render(request, 'rso/detail.html', context)
+
+def profile(request):
+    return render(request, 'rso/profile.html')
+
+
+def registration(request):
+
+    if request.method == 'POST':
+        # do some registration logic
+        return HttpResponse('Nice!')
+
+    return render(request, 'rso/registration_form.html')
+
+
+
+
+
+
+
+
+
 
 
 

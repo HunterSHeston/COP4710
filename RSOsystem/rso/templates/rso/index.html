@@ -6,11 +6,11 @@
 {% block content %}
     {% if allStudents %}
 
-        <ul>
-            {% for student in allStudents %}
-            <li><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.user.username }}</a></li>
-            {% endfor %}
-        </ul>
+        
+        {% for student in allStudents %}
+        <button class="btn btn-default"><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.user.username }}</a></button>
+        {% endfor %}
+    
     {% else %}
         <h3>There are no students</h3>
     {% endif %}

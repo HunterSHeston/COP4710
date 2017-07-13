@@ -5,7 +5,7 @@
     <div id="content-container" class="container p-none">
         <div class="lgn-container col-lg-8">
             <form id="login-form" method="post" 
-                  action="{% url 'login' %}">
+                  action="{% url 'rso:registration' %}">
                 {% csrf_token %}
                 <table class="table">
                     <tr>
@@ -26,7 +26,7 @@
                     </p>
                 {% endif %}
 
-                <input type="submit" value="Login" 
+                <input type="submit" value="Sign Up"
                        class="btn btn-primary pull-right" />
                 <input type="hidden" name="next" value="{{ next }}" />
             </form>

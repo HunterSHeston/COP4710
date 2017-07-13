@@ -17,8 +17,12 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     # /rso/24
-    url(r'^(?P<uID>[0-9]{1})/$', views.detail, name='detail'),
+    url(r'^(?P<uID>[0-9]+)/$', views.detail, name='detail'),
 
+
+    url(r'^profile/$', views.profile, name='profile'),
+
+    url(r'^registration/$', views.registration, name='registration'),
 
 
 ]
