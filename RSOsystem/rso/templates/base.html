@@ -1,50 +1,71 @@
 <html>
-    <head>
-        <title>{% block title %}{% endblock %}</title>
-        {% load static %}
-        <!--<link rel="stylesheet" type="text/css" href="{% static 'rso/style.css' %}" />-->
 
-        <!-- bootstrap links -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <ul class="nav nav-tabs">
-      <li>
-        <a href="#">Home</a>
-      </li>
-      <li>
-        <a href="#">Admin</a>
-      </li>
-      <li>
-        <a href="#">Rso</a>
-      </li>
-      <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          Dropdown <span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'rso/style.css' %}" />-->
+    <!-- bootstrap links -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Brand</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">Link</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">Separated link</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if request.user.is_authenticated %}
             <li>
-                <a href="#">one</a>
+              <a href="{% url 'rso:detail' user.id %}">{{ request.user.username }}</a>
             </li>
             <li>
-                <a href="#">two</a>
+              <a href="{% url 'logout' %}">Logout</a>
             </li>
+          {% else %}
             <li>
-                <a href="#">three</a>
+                <a href="{% url 'login' %}">Login</a>
             </li>
-        </ul>
-      </li>
-      <li>
-{#        <a href="{% url 'rso:student-add' %}">SignUp</a>#}
-      </li>
-      <li>
+          {% endif %}
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
 
-      </li>
-    </ul>
 
-        {% block content %}
-        {% endblock content %}
-    </body>
+
+      {% block content %} 
+      {% endblock content %}
+   
+</body>
+
 </html>

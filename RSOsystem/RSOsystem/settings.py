@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 #login redirect  |  the default is "accounts/profile/"
 LOGIN_REDIRECT_URL = reverse_lazy('rso:index')
+LOGOUT_REDIRECT_URL = reverse_lazy('rso:index')
 
 
 # Application definition
