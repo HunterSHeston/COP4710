@@ -26,6 +26,10 @@ def detail(request, uID):
         }
     return render(request, 'rso/detail.html', context)
 
+def map(request):
+    return render(request, 'rso/map.html')
+
+
 def profile(request):
     return render(request, 'rso/profile.html')
 
@@ -34,6 +38,7 @@ def registration(request):
 
     if request.method == 'POST':
         # do some registration logic
+        # This is where the user should be made and saved
         return HttpResponse('Nice!')
 
     return render(request, 'rso/registration_form.html')
