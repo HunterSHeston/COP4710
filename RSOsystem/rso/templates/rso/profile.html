@@ -11,15 +11,17 @@
 
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-5">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">About {{ request.user.username }} </div>
-                        <p class="panel-body">About {{ request.user.username }}: {{ request.user.student.aboutMe }}</p>
+                        <div class="panel-body">
+                            <p>{{ request.user.student.aboutMe }}</p>
+                        </div>
+
                     </div>
-                <p class="panel-body">University: {{ request.user.student.university }}</p>
+
             </div>
 
-            <div class="col-md-1"></div>
 
             <div class="col-md-5">
                 <div class="panel panel-default">
