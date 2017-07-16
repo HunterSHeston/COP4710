@@ -22,12 +22,9 @@
 
             </div>
 
-
             <div class="col-md-5">
                 <div class="panel panel-default">
                     <div  class="panel-heading panel-heading-custom">Your RSOs</div>
-
-
                     <div class="panel-body">
 
                         {% if request.user.student.member.all %}
@@ -55,12 +52,26 @@
                 </div>
             </div>
 
-
-
-
-
-
         </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">Your Info</div>
+                    <div class="panel-body">
+                        <p><b>User Name</b>: {{ request.user.username }}</p>
+                        <p><b>First Name</b>: {{ request.user.fistname }}</p>
+                        <p><b>Last Name</b>: {{ request.user.lastname }}</p>
+                        <p><b>University</b>: {{ request.user.student.university }}</p>
+                        <p><b>Email</b>: {{ request.user.email }}</p>
+                        <p><b>Date Joined</b>: {{ request.user.datejoined }}</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
