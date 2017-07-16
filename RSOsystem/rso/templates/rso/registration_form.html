@@ -2,8 +2,9 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
+    <div class="col-lg-4"></div>
     <div id="content-container" class="container p-none">
-        <div class="lgn-container col-lg-8">
+        <div class="panel panel-default lgn-container col-lg-4">
             <form id="login-form" method="post" 
                   action="{% url 'rso:registration' %}">
                 {% csrf_token %}

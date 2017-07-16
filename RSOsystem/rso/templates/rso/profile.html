@@ -4,5 +4,62 @@
 
 
 {% block content %}
- 	<h1>Welcome {{ user.username }}</h1>
+    <div class="container">
+        <div class="row">
+            <div style="padding-bottom: 20px;" class="col-md-12"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">About {{ request.user.username }} </div>
+                        <p class="panel-body">About {{ request.user.username }}: {{ request.user.student.aboutMe }}</p>
+                    </div>
+                <p class="panel-body">University: {{ request.user.student.university }}</p>
+            </div>
+
+            <div class="col-md-1"></div>
+
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div  class="panel-heading panel-heading-custom">Your RSOs</div>
+
+
+                    <div class="panel-body">
+
+                        {% if request.user.student.member.all %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>RSO Name</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rso in request.user.student.member.all %}
+                                    <th scope="row"></th>
+                                    <td>{{ rso.name }}</td>
+                                    <td>{{ rso.description }}</td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <div class="panel-body">Not a member of any RSOs yet.</div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+        </div>
+    </div>
+
+
 {% endblock %}

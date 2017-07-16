@@ -1,8 +1,20 @@
 body{
-	background-color: #1b6d85;
+	background-color: #FFC904;
+}
+
+.center-panel {
+	background-image: none;
+    background-color: #5a5a5a;
+
 }
 
 
-li{
-	color: green
+table, th {
+    border-color: black;
+}
+
+.panel-default > .panel-heading-custom {
+    background-color: black;
+    color: white;
+    border-color: black;
 }

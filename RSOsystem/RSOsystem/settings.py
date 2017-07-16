@@ -30,7 +30,7 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 #login redirect  |  the default is "accounts/profile/"
-LOGIN_REDIRECT_URL = reverse_lazy('rso:index')
+LOGIN_REDIRECT_URL = reverse_lazy('rso:profile')
 LOGOUT_REDIRECT_URL = reverse_lazy('rso:index')
 
 
