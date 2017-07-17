@@ -29,6 +29,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+GEOPOSITION_GOOGLE_MAPS_API_KEY = 'AIzaSyAvss_WVnNhIjoS3nVWCuqdsneHURN42yE'
+
 #login redirect  |  the default is "accounts/profile/"
 LOGIN_REDIRECT_URL = reverse_lazy('rso:profile')
 LOGOUT_REDIRECT_URL = reverse_lazy('rso:index')
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'geoposition',
 ]
 
 MIDDLEWARE = [

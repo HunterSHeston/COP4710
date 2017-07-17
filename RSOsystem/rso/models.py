@@ -5,6 +5,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from geoposition.fields import GeopositionField
 
 import datetime
 
@@ -71,8 +72,8 @@ class Event(models.Model):
     phone = models.CharField(max_length=13)
 
     address = models.CharField(max_length=250)
-    lon = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
-    lat = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
+
+    location = GeopositionField(null=True, blank=True)
 
     PUBLIC = 'pub'
     PRIVATE = 'pri'
