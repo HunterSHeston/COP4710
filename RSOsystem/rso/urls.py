@@ -22,4 +22,6 @@ urlpatterns = [
     url(r'^registration/$', views.registration, name='registration'),
     url(r'^map/$', views.map, name='map'),
 
+    url(r'^signup/$', views.signup, name='signup'),
+
 ]

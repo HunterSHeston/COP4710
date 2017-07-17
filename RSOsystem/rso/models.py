@@ -7,6 +7,8 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from geoposition.fields import GeopositionField
 
+
+
 import datetime
 
 #
@@ -17,12 +19,20 @@ import datetime
 # someModel.bojects.exclude( somefield='valueOfField' ) exclude objects with column: someField and value: value of field
 
 
+class StudentManager(models.Manager):
+    def create_student(self, user):
+        student = self.create(user=user)
+
+        return student
+
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student')
-    university = models.ForeignKey('University', on_delete=models.CASCADE)
+    university = models.ForeignKey('University', on_delete=models.CASCADE, blank=True, null=True)
     member = models.ManyToManyField('RsoGroup', blank=True)
     aboutMe = models.TextField()
+
+    objects = StudentManager()
 
     def get_absolute_url(self):
         return reverse('rso:detail', kwargs={'pk': self.pk})
@@ -58,8 +68,6 @@ class University(models.Model):
     numStudents = models.IntegerField(verbose_name='Number of Student')
 
     address = models.CharField(max_length=250)
-    lon = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
-    lat = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
 
     def __str__(self):
         return self.name

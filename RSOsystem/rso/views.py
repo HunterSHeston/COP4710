@@ -6,11 +6,15 @@ from django.views.generic import View
 from .models import Student, Admin, RsoGroup, Event
 from django.contrib.auth.models import User
 from django.http import HttpResponse
+from django.contrib.auth.forms import UserCreationForm
+from rso.forms import SignUpForm
+
 
 def index(request):
-    allStudents = Student.objects.all()
+    allRSOs = RsoGroup.objects.all()
+
     context = {
-        'allStudents': allStudents
+        'allRSOs': allRSOs
     }
     return render(request, 'rso/index.html', context)
 
@@ -25,6 +29,7 @@ def detail(request, uID):
             'email': user.email,
         }
     return render(request, 'rso/detail.html', context)
+
 
 def map(request):
 
@@ -45,9 +50,7 @@ def profile(request):
     return render(request, 'rso/profile.html', context=context)
 
 
-
 def registration(request):
-
 
     if request.method == 'POST':
         email = request.POST['email']
@@ -59,7 +62,7 @@ def registration(request):
 
         user = user.save()
 
-        student = Student.objects.create(user=user, aboutMe='Default about me.')
+        student = Student.objects.create_student(user=user)
         student.save()
 
         return render(request, 'rso/index.html')
@@ -68,40 +71,22 @@ def registration(request):
         return render(request, 'rso/registration_form.html')
 
 
+def signup(request):
 
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
 
+            student = Student.objects.create_student(user=user)
+            student.save()
 
-
-# class UserFormView(View):
-#     form_class = UserForm
-#     template_name = 'rso/registration_form.html'
-#
-#     #display a blank form
-#     def get(self, request):
-#         form = self.form_class(None)
-#         return render(request, self.template_name, {'form': form})
-#
-#     def post(self, request):
-#         form = self.form_class(request.POST)
-#
-#         if form.is_valid():
-#             user = form.save(commit=False)
-#
-#             # cleaned (normalized) data
-#             username = form.cleaned_data['username']
-#             password = form.cleaned_data['password']
-#             user.set_password(password)
-#             user.save()
-#
-#             # returns User objects if credentials are correct
-#             user = authenticate(username=username, password=password)
-#
-#             if user is not None:
-#
-#                 if user.is_active:
-#                     login(request, user)
-#                     return redirect('rso:index')
-#         return render(request, self.template_name, {'form':form})
-
-
+            return redirect('rso:index')
+    else:
+        form = SignUpForm()
+    return render(request, 'rso/signup.html', {'form': form})
 

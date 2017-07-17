@@ -38,10 +38,13 @@
                             </thead>
                             <tbody>
                                 {% for rso in request.user.student.member.all %}
-                                    <th scope="row"></th>
-                                    <td>{{ rso.name }}</td>
-                                    <td>{{ rso.description }}</td>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>{{ rso.name }}</td>
+                                        <td>{{ rso.description }}</td>
+                                    </tr>
                                 {% endfor %}
+                                <th scope=""></th>
                             </tbody>
                         </table>
                         {% else %}
