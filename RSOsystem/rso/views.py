@@ -27,11 +27,8 @@ def detail(request, uID):
     return render(request, 'rso/detail.html', context)
 
 def map(request):
+
     return render(request, 'rso/map.html')
-
-def registration(request):
-    str = ''
-
 
 
 def profile(request):
@@ -48,20 +45,27 @@ def profile(request):
     return render(request, 'rso/profile.html', context=context)
 
 
+
 def registration(request):
 
+
     if request.method == 'POST':
-        # do some registration logic
-        # This is where the user should be made and saved
-        return HttpResponse('Nice!')
+        email = request.POST['email']
+        username = request.POST['username']
+        password = request.POST['password']
 
-    return render(request, 'rso/registration_form.html')
+        user = User.objects.create_user(username=username, email=email)
+        user.set_password(password)
 
+        user = user.save()
 
+        student = Student.objects.create(user=user, aboutMe='Default about me.')
+        student.save()
 
+        return render(request, 'rso/index.html')
 
-
-
+    if request.method == 'GET':
+        return render(request, 'rso/registration_form.html')
 
 
 
