@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+
+{% block content %}
+    {% if allStudents %}
+
+        <ul>
+            {% for student in allStudents %}
+            <li><a href="{% url 'rso:detail' student.id %}">Student Username: {{ student.user.username }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <h3>There are no students</h3>
+    {% endif %}
+{% endblock %}
