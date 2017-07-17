@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Details{% endblock %}
+
+{% block content %}
+	<h3>Student Data</h3>
+    <h2>student ID: {{ id }}</h2>
+    <h2>student FirstName: {{ first_name }}</h2>
+    <h2>student LastName: {{ last_name }}</h2>
+    <h2>student Email: {{ email }}</h2>
+
+<a href="#"><< Go Back</a>
+{% endblock %}

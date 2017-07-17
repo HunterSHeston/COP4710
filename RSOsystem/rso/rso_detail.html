@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Details{% endblock %}
+
+{% block content %}
+<br>
+<h1>{{rso.name}}</h1>
+<p>{{rso.description}}</p>
+<p>Contact:
+  <ul>
+    <li>{{rso.email}}</li>
+    <li>{{rso.phone}}</li>
+  </ul>
+</p>
+<a href="#"><< Go Back</a>
+{% endblock %}
