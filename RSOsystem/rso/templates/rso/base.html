@@ -73,10 +73,17 @@
 </nav>
 
 
+  <div id="sidePanel" class="col-md-2"></div>
 
-      {% block content %} 
-      {% endblock content %}
-   
+  <div style="min-height: 800px" class="panel panel-default col-md-8 center-panel">
+    <div class="centerPanel">
+        {% block content %}
+        {% endblock content %}
+    </div>
+  </div>
+
+  <div id="sidePanel" class="col-md-2"></div>
+
 </body>
 
 </html>

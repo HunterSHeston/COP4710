@@ -3,7 +3,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 # from .forms import UserForm
-from .models import Student, Admin, RsoGroup
+from .models import Student, Admin, RsoGroup, Event
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 
@@ -31,7 +31,17 @@ def map(request):
 
 
 def profile(request):
-    return render(request, 'rso/profile.html')
+
+    events = []
+
+    for event in Event.objects.all():
+        events.append(event)
+
+    context = {
+        'events': events,
+    }
+
+    return render(request, 'rso/profile.html', context=context)
 
 
 def registration(request):

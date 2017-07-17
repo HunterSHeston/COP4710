@@ -18,10 +18,9 @@ import datetime
 
 
 class Student(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student')
     university = models.ForeignKey('University', on_delete=models.CASCADE)
     member = models.ManyToManyField('RsoGroup', blank=True)
-
     aboutMe = models.TextField()
 
     def get_absolute_url(self):
@@ -32,7 +31,7 @@ class Student(models.Model):
 
 
 class Admin(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='student')
 
     def __str__(self):
         return self.user.username
@@ -44,7 +43,7 @@ class RsoGroup(models.Model):
     phone = models.CharField(max_length=13)
     email = models.EmailField()
 
-    students = models.ManyToManyField(Student)
+    students = models.ManyToManyField(Student, related_name='students')
 
     def __str__(self):
         return self.name
@@ -100,9 +99,9 @@ class Event(models.Model):
 
     category = models.CharField(max_length=3, choices=catChoices, default=GENERAL)
 
-    rso = models.ForeignKey(RsoGroup, on_delete=models.CASCADE, blank=True, null=True)
-    university = models.ForeignKey(University, on_delete=models.CASCADE)
-    admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
+    rso = models.ForeignKey(RsoGroup, on_delete=models.CASCADE, blank=True, null=True, related_name='rso')
+    university = models.ForeignKey(University, on_delete=models.CASCADE, related_name='university')
+    # admin = models.ForeignKey(Admin, on_delete=models.CASCADE, related_name='admin')
 
     def __str__(self):
         return self.name

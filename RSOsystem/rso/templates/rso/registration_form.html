@@ -3,10 +3,15 @@
 
 {% block content %}
 
-    <div id="registration-form">
-        <div class="container">
+{##}
+{#    <div id="registration-form">#}
+{#        <div class="container">#}
 
-            <form id="login-form" method="post" 
+
+    <div class="col-lg-4"></div>
+    <div id="content-container" class="container p-none">
+        <div class="panel panel-default lgn-container col-lg-4">
+            <form id="login-form" method="post"
                   action="{% url 'rso:registration' %}">
                 {% csrf_token %}
                 

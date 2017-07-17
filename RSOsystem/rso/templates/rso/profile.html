@@ -4,5 +4,116 @@
 
 
 {% block content %}
- 	<h1>Welcome {{ user.username }}</h1>
+    <div class="container">
+        <div class="row">
+            <div style="padding-bottom: 20px;" class="col-md-12"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading panel-heading-custom">About {{ request.user.username }} </div>
+                        <div class="panel-body">
+                            <p>{{ request.user.student.aboutMe }}</p>
+                        </div>
+
+                    </div>
+
+            </div>
+
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div  class="panel-heading panel-heading-custom">Your RSOs</div>
+                    <div class="panel-body">
+
+                        {% if request.user.student.member.all %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>RSO Name</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for rso in request.user.student.member.all %}
+                                    <th scope="row"></th>
+                                    <td>{{ rso.name }}</td>
+                                    <td>{{ rso.description }}</td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <div class="panel-body">Not a member of any RSOs yet.</div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">Your Info</div>
+                    <div class="panel-body">
+                        <p><b>User Name</b>: {{ request.user.username }}</p>
+                        <p><b>First Name</b>: {{ request.user.fistname }}</p>
+                        <p><b>Last Name</b>: {{ request.user.lastname }}</p>
+                        <p><b>University</b>: {{ request.user.student.university }}</p>
+                        <p><b>Email</b>: {{ request.user.email }}</p>
+                        <p><b>Date Joined</b>: {{ request.user.datejoined }}</p>
+
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">Events</div>
+                    <div class="panel-body">
+
+
+                    {% if events %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>Event Name</td>
+                                    <td>Description</td>
+                                    <td>Address</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events %}
+                                    <th scope="row"></th>
+                                    <td>{{ event.name }}</td>
+                                    <td>{{ event.description }}</td>
+                                    <td>{{ event.address}}</td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <div class="panel-body">No events.</div>
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
 {% endblock %}
