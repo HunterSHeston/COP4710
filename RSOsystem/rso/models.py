@@ -2,45 +2,110 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.urlresolvers import reverse
 
-# Create your models here.
+from geoposition.fields import GeopositionField # for django-geoposition
 
-class User(models.Model):
-	name = models.CharField(max_length=20)
-	def __str__(self):
-		return self.name
+import datetime
 
-class Rso(models.Model):
-	name = models.CharField(max_length=20)
-	description = models.TextField()
-	users = models.ManyToManyField(User)
-	email = models.EmailField(max_length=20, default='')
-	phone = models.CharField(max_length=10, default='')
-	def __str__(self):
-		return self.name
+#
 
-class Event(models.Model):
-    name = models.CharField(max_length=20)
+# queries  can be done with'objects'
+# someModel.bojects.all()  yields all objects
+# someModel.bojects.filter( somefield='valueOfField' )  yields objects with column: someField and value: value of field
+# someModel.bojects.exclude( somefield='valueOfField' ) exclude objects with column: someField and value: value of field
+
+
+
+class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    university = models.ForeignKey('University', on_delete=models.CASCADE)
+    member = models.ManyToManyField('RsoGroup', blank=True)
+
+    aboutMe = models.TextField()
+
+    def get_absolute_url(self):
+        return reverse('rso:detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return str(self.user.username)
+
+
+class Admin(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username
+
+
+class RsoGroup(models.Model):
+    name = models.CharField(max_length=40)
     description = models.TextField()
-    created_at = models.DateTimeField(default=datetime.now, blank=True)
-    email = models.EmailField(max_length=20, default='')
-    phone = models.EmailField(max_length=10, default='')
-    start_time = models.DateTimeField()
-    end_time = models.DateTimeField()
-    rso_host = models.ForeignKey(Rso, default='')
-    university_host = models.ForeignKey(University)
-	#location field
+    phone = models.CharField(max_length=13)
+    email = models.EmailField()
+
+    users = models.ManyToManyField(Student)
 
     def __str__(self):
         return self.name
 
+
 class University(models.Model):
-    name = models.CharField(max_length=20)
-	decription = models.TextField()
-    email = models.EmailField(max_length=20, default='')
-    phone = models.CharField(max_length=10, default='')
-	num_students = models.IntegerField()
-	#location field
+    name = models.CharField(max_length=40)
+    description = models.TextField()
+    phone = models.CharField(max_length=13)
+    email = models.EmailField()
+    numStudents = models.IntegerField(verbose_name='Number of Student')
+
+    address = models.CharField(max_length=250)
+    lon = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
+    lat = models.DecimalField(max_digits=8, decimal_places=6, blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class Event(models.Model):
+    description = models.TextField()
+    name = models.CharField(max_length=40)
+    email = models.EmailField()
+    phone = models.CharField(max_length=13)
+
+    location = GeopositionField()
+
+    start_date_time = models.DateTimeField(default=None)
+    end_date_time = models.DateTimeField(default=None)
+
+    PUBLIC = 'pub'
+    PRIVATE = 'pri'
+    RSO = 'rso'
+    visChoices = (
+        (PUBLIC, 'Public Event'),
+        (PRIVATE, 'Private Event'),
+        (RSO, 'RSO Event'),
+    )
+
+    visibility = models.CharField(max_length=3, choices=visChoices, default=PUBLIC)
+
+    GENERAL = 'gen'
+    FUNDRAISING = 'fun'
+    SOCIAL = 'soc'
+    TECH = 'tec'
+
+    catChoices = (
+        (GENERAL, 'General'),
+        (FUNDRAISING, 'Fund Raising'),
+        (SOCIAL, 'Social'),
+        (TECH, 'Tech Talk'),
+    )
+
+    category = models.CharField(max_length=3, choices=catChoices, default=GENERAL)
+
+    rso = models.ForeignKey(RsoGroup, on_delete=models.CASCADE, blank=True, null=True)
+    university = models.ForeignKey(University, on_delete=models.CASCADE)
+    admin = models.ForeignKey(Admin, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
