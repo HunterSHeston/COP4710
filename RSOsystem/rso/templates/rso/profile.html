@@ -70,6 +70,47 @@
 
                 </div>
             </div>
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">Events</div>
+                    <div class="panel-body">
+
+
+                    {% if events %}
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <td>Event Name</td>
+                                    <td>Description</td>
+                                    <td>Address</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for event in events %}
+                                    <th scope="row"></th>
+                                    <td>{{ event.name }}</td>
+                                    <td>{{ event.description }}</td>
+                                    <td>{{ event.address}}</td>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% else %}
+                            <div class="panel-body">No events.</div>
+                        {% endif %}
+
+
+
+
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
         </div>
 
     </div>

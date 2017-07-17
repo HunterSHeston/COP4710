@@ -21,7 +21,6 @@ class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='student')
     university = models.ForeignKey('University', on_delete=models.CASCADE)
     member = models.ManyToManyField('RsoGroup', blank=True)
-
     aboutMe = models.TextField()
 
     def get_absolute_url(self):
