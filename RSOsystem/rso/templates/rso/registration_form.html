@@ -2,34 +2,45 @@
 {% block title %}Register{% endblock %}
 
 {% block content %}
-    <div id="content-container" class="container p-none">
-        <div class="lgn-container col-lg-8">
+
+    <div id="registration-form">
+        <div class="container">
+
             <form id="login-form" method="post" 
                   action="{% url 'rso:registration' %}">
                 {% csrf_token %}
-                <table class="table">
-                    <tr>
-                        <td><label for="id_username">Username</label></td>
-                        <td><input id="id_username" name="username" 
-                                   type="text" class="form-control"></td>
-                    </tr>
-                    <tr>
-                        <td><label for="id_password">Password</label></td>
-                        <td><input id="id_password" name="password" 
-                                   type="password" class="form-control"></td>
-                    </tr>
-                </table>
-                {% if form.errors %}
-                    <p class=" label label-danger">
-                        Your username and password didn't match. 
-                        Please try again.
-                    </p>
-                {% endif %}
+                
+                <div class="form-group">
 
-                <input type="submit" value="Sign Up"
-                       class="btn btn-primary pull-right" />
-                <input type="hidden" name="next" value="{{ next }}" />
+                        <label for="id_email">Email</label>
+                        <input id="id_email" name="email" 
+                                   type="email" class="form-control" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+
+                        <label for="id_username">Username</label>
+                        <input id="id_username" name="username" 
+                                   type="text" class="form-control" placeholder="Username">
+                </div>
+                <div class="form-group">
+                        <label for="id_password">Password</label>
+                        <input id="id_password" name="password" 
+                                   type="password" class="form-control" placeholder="Password">
+                </div>
+                
+                    {% if form.errors %}
+                        <p class=" label label-danger">
+                            Your username and password didn't match. 
+                            Please try again.
+                        </p>
+                    {% endif %}
+
+                    <input type="submit" value="Sign Up"
+                           class="btn btn-primary pull-right" />
+                    <input type="hidden" name="next" value="{{ next }}" />
+                
             </form>
+            </div>
         </div>
     </div>
 {% endblock content %}

@@ -84,9 +84,9 @@ DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql",
         'NAME': 'rso_system',
-        'USER': 'hunter',
+        'USER': 'root',
         'PASSWORD': 'password',
-        'HOST': '',
+        'HOST': 'localhost',
         'PORT': '',        
     }
 }
