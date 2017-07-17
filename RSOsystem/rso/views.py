@@ -29,6 +29,10 @@ def detail(request, uID):
 def map(request):
     return render(request, 'rso/map.html')
 
+def registration(request):
+    str = ''
+
+
 
 def profile(request):
 
