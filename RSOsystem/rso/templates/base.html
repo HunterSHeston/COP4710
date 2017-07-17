@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <!-- for DATETIMEPICKER -->
+        <!--
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        -->
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+        <!-- Bootstrap -->
+        <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">-->
+        <!--<link href="jquery.datetimepicker.css" rel="stylesheet">-->
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+
+
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+
+        <!--<link rel="stylesheet" type="text/css" href="{% static 'rso/style.css' %}" />-->
+
+        <!-- bootstrap links -->
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'moment.js' %}">
+        <link rel="stylesheet" href="{% static 'jquery.datetimepicker.css' %}">
+        <link rel="stylesheet" href="{% static 'jquery.atetimepicker.min.js' %}">
+
+      <!-- JQuery Google Maps API -->
+      <!--
+      <script src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
+      <script src="jquery.geocomplete.js"></script>
+      -->
+    </head>
+    <body>
+        <ul class="nav nav-tabs">
+      <li>
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <a href="/admin/">Admin</a>
+      </li>
+      <li>
+        <a href="#">Rso</a>
+      </li>
+      <li>
+        <a href="/rso/events/add/">Add Event</a>
+      </li>
+      <li role="presentation" class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          Dropdown <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a href="#">one</a>
+            </li>
+            <li>
+                <a href="#">two</a>
+            </li>
+            <li>
+                <a href="#">three</a>
+            </li>
+        </ul>
+      </li>
+      <li>
+{#        <a href="{% url 'rso:student-add' %}">SignUp</a>#}
+      </li>
+      <li>
+
+      </li>
+    </ul>
+
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>
