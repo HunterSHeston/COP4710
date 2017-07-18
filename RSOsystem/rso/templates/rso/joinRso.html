@@ -1,0 +1,39 @@
+{% extends 'rso/base.html' %}
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+    {% if rsos %}
+        {% for rso in rsos %}
+            <div class="row">
+                <div class="col-md-1"></div>
+
+                <div style="padding-top: 20px" class="col-md-10">
+                    <div class="panel panel-default">
+                        <div  class="panel-heading panel-heading-custom">All RSO Groups</div>
+                        <div class="panel-body">
+                            <p>{{ rso.description }}</p>
+                            {% csrf_token %}
+                            <p><a href="{% url 'rso:add' rso.id %}">Join this RSO</a></p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="row">
+            <div class="col-md-1">
+            </div>
+            <div style="padding-top: 20px" class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-heading panel-heading-custom">All RSO Groups</div>
+                    <div class="panel-body">
+                        <p>There are no RSOs yet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+
+{% endblock %}
