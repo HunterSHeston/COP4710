@@ -63,11 +63,11 @@
                     <div class="panel-heading panel-heading-custom">Your Info</div>
                     <div class="panel-body">
                         <p><b>User Name</b>: {{ request.user.username }}</p>
-                        <p><b>First Name</b>: {{ request.user.fistname }}</p>
-                        <p><b>Last Name</b>: {{ request.user.lastname }}</p>
+                        <p><b>First Name</b>: {{ request.user.first_name }}</p>
+                        <p><b>Last Name</b>: {{ request.user.last_name }}</p>
                         <p><b>University</b>: {{ request.user.student.university }}</p>
                         <p><b>Email</b>: {{ request.user.email }}</p>
-                        <p><b>Date Joined</b>: {{ request.user.datejoined }}</p>
+                        <p><b>Date Joined</b>: {{ request.user.date_joined }}</p>
 
                     </div>
 
@@ -87,14 +87,18 @@
                                     <td>Event Name</td>
                                     <td>Description</td>
                                     <td>Address</td>
+                                    <td>RSO</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for event in events %}
-                                    <th scope="row"></th>
-                                    <td>{{ event.name }}</td>
-                                    <td>{{ event.description }}</td>
-                                    <td>{{ event.address}}</td>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>{{ event.name }}</td>
+                                        <td>{{ event.description }}</td>
+                                        <td>{{ event.address}}</td>
+                                        <td>{{ event.rso.name }}</td>
+                                    </tr>
                                 {% endfor %}
                             </tbody>
                         </table>

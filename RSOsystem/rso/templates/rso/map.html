@@ -4,34 +4,85 @@
 {% block content %}
 
 
-    <h3>My Google Maps Demo</h3>
-    <div id="map"></div>
-    <script>
-        function initMap() {
-            var UCF = {lat: 28.6024, lng: -81.2001};
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 13,
-                center: UCF,
-            });
-            var marker1 = new google.maps.Marker({
-                position: UCF,
-                map: map
+    <div class="row">
+        <div class="col-lg-12">
+            <h3 style="color: white;">Map of RSO Events</h3>
+            <div id="map"></div>
+            <script>
+                function initMap() {
+                    var UCF = {lat: 28.6024, lng: -81.2001};
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 13,
+                        center: UCF,
+                    });
+                    var marker1 = new google.maps.Marker({
+                        position: UCF,
+                        map: map
 
-            });
+                    });
 
-            var info
+                    var info
 
-            var marker2 = new google.maps.Marker({
-                position: {lat: 28.60, lng: -81.2000},
-                map: map
-            });
-        }
-    </script>
+                    var marker2 = new google.maps.Marker({
+                        position: {lat: 28.60, lng: -81.2000},
+                        map: map
+                    });
+                }
+            </script>
+
+            <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTp8QRWk07T9zGGSA3Z6wAy_BH0yi5LQs&callback=initMap">
+            </script>
 
 
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTp8QRWk07T9zGGSA3Z6wAy_BH0yi5LQs&callback=initMap">
-    </script>
+
+            <div class="col-md-1">
+            </div>
+
+            <div style="padding-top: 20px" class="col-md-10">
+                <div class="panel panel-default">
+                    <div  class="panel-heading panel-heading-custom">Public Events</div>
+
+                    {% if events %}
+                        <div class="panel-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td><b>Event Name</b></td>
+                                        <td><b>Description</b></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for event in events %}
+                                        <tr>
+                                            <th scope="row"></th>
+                                            <td>{{ event.name }}</td>
+                                            <td>{{ event.description }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="panel-body">There are no events.</div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}

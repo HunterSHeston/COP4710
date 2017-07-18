@@ -35,16 +35,34 @@ def detail(request, uID):
 
 def map(request):
 
-    return render(request, 'rso/map.html')
+    events = Event.objects.filter(visibility=Event.PUBLIC)
+
+    context = {
+        'events': events,
+    }
+
+    return render(request, 'rso/map.html', context=context)
 
 
 @login_required(login_url='/login/')
 def profile(request):
 
+    publicEvents = Event.objects.filter(visibility=Event.PUBLIC)
+    rsoEvents = Event.objects.filter(visibility=Event.RSO)
+
+
+
+
     events = []
 
-    for event in Event.objects.all():
+
+
+    for event in publicEvents:
         events.append(event)
+
+    for event in rsoEvents:
+        if event.rso.objects.filter(student=request.user.student):
+            events.append(event)
 
     context = {
         'events': events,
