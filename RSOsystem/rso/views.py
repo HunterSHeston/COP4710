@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.views.generic import View
 # from .forms import UserForm
 from .models import Student, Admin, RsoGroup, Event
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from rso.forms import SignUpForm
@@ -124,8 +124,16 @@ def createRso(request):
             phone=request.POST['RSO_phone'],
             email=request.POST['RSO_email']
         )
-        
 
+        creator = User.objects.get(username=request.user.username)
+        creator.is_staff = True
+
+        admins = Group.objects.get(name='Admin')
+        creator.groups.add(admins)
+
+        creator.save()
         newRso.save()
+
+        return render(request, 'rso/index.html')
 
     return render(request, 'rso/createRso.html')
