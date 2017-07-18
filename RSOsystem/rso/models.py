@@ -54,7 +54,7 @@ class RsoGroup(models.Model):
     phone = models.CharField(max_length=13)
     email = models.EmailField()
 
-    students = models.ManyToManyField(Student, related_name='students')
+    students = models.ManyToManyField(Student, related_name='rsoToStudent')
 
     def __str__(self):
         return self.name

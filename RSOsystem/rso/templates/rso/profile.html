@@ -14,7 +14,7 @@
             <div class="col-md-5">
                     <div class="panel panel-default">
                         <div class="panel-heading panel-heading-custom">About {{ request.user.username }} </div>
-                        <div class="panel-body">
+                        <div style="min-height: 150px;" class="panel-body">
                             <p>{{ request.user.student.aboutMe }}</p>
                         </div>
 
@@ -24,8 +24,8 @@
 
             <div class="col-md-5">
                 <div class="panel panel-default">
-                    <div  class="panel-heading panel-heading-custom">Your RSOs</div>
-                    <div class="panel-body">
+                    <div class="panel-heading panel-heading-custom">Your RSOs</div>
+                    <div style="min-height: 150px;" class="panel-body">
 
                         {% if request.user.student.member.all %}
                         <table class="table">

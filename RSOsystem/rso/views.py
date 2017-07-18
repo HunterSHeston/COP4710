@@ -48,20 +48,16 @@ def map(request):
 def profile(request):
 
     publicEvents = Event.objects.filter(visibility=Event.PUBLIC)
-    rsoEvents = Event.objects.filter(visibility=Event.RSO)
-
-
-
+    rsoEvents = Event.objects.all()
+    studentRsos = request.user.student.rsoToStudent.all()
 
     events = []
-
-
 
     for event in publicEvents:
         events.append(event)
 
     for event in rsoEvents:
-        if event.rso.objects.filter(student=request.user.student):
+        if event.rso in studentRsos and event not in events :
             events.append(event)
 
     context = {
