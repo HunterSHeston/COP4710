@@ -27,7 +27,7 @@
                     <div class="panel-heading panel-heading-custom">Your RSOs</div>
                     <div style="min-height: 150px;" class="panel-body">
 
-                        {% if request.user.student.member.all %}
+                        {% if RSOs %}
                         <table class="table">
                             <thead>
                                 <tr>
@@ -37,7 +37,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for rso in request.user.student.member.all %}
+                                {% for rso in RSOs %}
                                     <tr>
                                         <th scope="row"></th>
                                         <td>{{ rso.name }}</td>

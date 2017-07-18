@@ -11,7 +11,6 @@ from rso.forms import SignUpForm
 from django.contrib.auth.decorators import login_required
 
 
-
 def index(request):
     allRSOs = RsoGroup.objects.all()
 
@@ -19,18 +18,6 @@ def index(request):
         'allRSOs': allRSOs
     }
     return render(request, 'rso/index.html', context)
-
-
-def detail(request, uID):
-    user = get_object_or_404(User, pk=uID)
-
-    context = {
-            'id': user.id,
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'email': user.email,
-        }
-    return render(request, 'rso/detail.html', context)
 
 
 def map(request):
@@ -51,6 +38,8 @@ def profile(request):
     rsoEvents = Event.objects.all()
     studentRsos = request.user.student.rsoToStudent.all()
 
+    RSOs = RsoGroup.objects.filter(students=request.user.student)
+
     events = []
 
     for event in publicEvents:
@@ -62,6 +51,7 @@ def profile(request):
 
     context = {
         'events': events,
+        'RSOs': RSOs,
     }
 
     return render(request, 'rso/profile.html', context=context)
@@ -107,3 +97,20 @@ def signup(request):
         form = SignUpForm()
     return render(request, 'rso/signup.html', {'form': form})
 
+
+@login_required(login_url='/login/')
+def joinRso(request):
+
+    rsos = RsoGroup.objects.all()
+    return render(request, 'rso/joinRso.html', {'rsos': rsos})
+
+
+@login_required(login_url='/login/')
+def add(request, rsoID):
+
+    rso = RsoGroup.objects.get(id=rsoID)
+    rso.students.add(request.user.student)
+    rso.save()
+
+    rsos = RsoGroup.objects.all()
+    return render(request, 'rso/joinRso.html', {'rsos': rsos})
