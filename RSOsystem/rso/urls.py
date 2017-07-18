@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^joinRso/$', views.joinRso, name='joinRso'),
     url(r'^(?P<rsoID>[0-9]+)/$', views.add, name='add'),
+    url(r'^createRso/$', views.createRso, name='createRso'),
 
 ]

@@ -114,3 +114,18 @@ def add(request, rsoID):
 
     rsos = RsoGroup.objects.all()
     return render(request, 'rso/joinRso.html', {'rsos': rsos})
+
+def createRso(request):
+
+    if request.method == 'POST':
+        newRso = RsoGroup(
+            name=request.POST['RSO_name'],
+            description=request.POST['RSO_description'],
+            phone=request.POST['RSO_phone'],
+            email=request.POST['RSO_email']
+        )
+        
+
+        newRso.save()
+
+    return render(request, 'rso/createRso.html')

@@ -1,0 +1,92 @@
+{% extends 'rso/base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <div class="container" id="RSO-container">
+
+        <div class="row">
+
+
+
+            <div class="col-md-2"></div>
+            <div class="col-md-6">
+
+                <div class="panel panel-default">
+
+                    <div class="panel-heading panel-heading-custom">Create a New RSO</div>
+
+                    <div class="panel-body">
+                        <form id="RSO-form" method="post"
+                              action="">
+
+                            {% csrf_token %}
+
+                            <div class="form-group">
+                                <label for="RSO_name">RSO Name</label>
+                                <input id="RSO_name" name="RSO_name"
+                                       type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RSO_description">RSO Description</label>
+                                <input id="RSO_description" name="RSO_description"
+                                       type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RSO_phone">RSO Phone Number</label>
+                                <input id="RSO_phone" name="RSO_phone"
+                                       type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="RSO_email">RSO email</label>
+                                <input id="RSO_email" name="RSO_email"
+                                       type="text" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_email_one">Email One</label>
+                                <input id="id_email_one" name="email_one"
+                                       type="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_email_two">Email Two</label>
+                                <input id="id_email_two" name="email_two"
+                                       type="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_email_three">Email Three</label>
+                                <input id="id_email_three" name="email_three"
+                                       type="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_email_four">Email Four</label>
+                                <input id="id_email_four" name="email_four"
+                                       type="email" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="id_email_five">Email Five</label>
+                                <input id="id_email_five" name="email_five"
+                                       type="email" class="form-control">
+                            </div>
+                {% if form.errors %}
+                    <p class=" label label-danger">
+
+                    </p>
+                {% endif %}
+                            <input type="submit" value="Create RSO"
+                                   class="btn btn-primary pull-right" />
+                            <input type="hidden" name="next" value="{{ next }}" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
