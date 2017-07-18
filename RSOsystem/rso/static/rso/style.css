@@ -7,8 +7,6 @@ body{
     background-color: #5a5a5a;
 }
 
-
-
 table, th {
     border-color: black;
 }
@@ -17,5 +15,10 @@ table, th {
     background-color: black;
     color: white;
     border-color: black;
->>>>>>> master
+}
+
+div  #map {
+    height: 400px;
+    width: 100%;
+    margin-top: 20px;
 }

@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from rso.forms import SignUpForm
+from django.contrib.auth.decorators import login_required
+
 
 
 def index(request):
@@ -36,6 +38,7 @@ def map(request):
     return render(request, 'rso/map.html')
 
 
+@login_required(login_url='/login/')
 def profile(request):
 
     events = []

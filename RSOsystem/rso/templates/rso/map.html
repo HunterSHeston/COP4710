@@ -3,6 +3,35 @@
 
 {% block content %}
 
-    <h1>MAP</h1>
+
+    <h3>My Google Maps Demo</h3>
+    <div id="map"></div>
+    <script>
+        function initMap() {
+            var UCF = {lat: 28.6024, lng: -81.2001};
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 13,
+                center: UCF,
+            });
+            var marker1 = new google.maps.Marker({
+                position: UCF,
+                map: map
+
+            });
+
+            var info
+
+            var marker2 = new google.maps.Marker({
+                position: {lat: 28.60, lng: -81.2000},
+                map: map
+            });
+        }
+    </script>
+
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTp8QRWk07T9zGGSA3Z6wAy_BH0yi5LQs&callback=initMap">
+    </script>
 
 {% endblock %}
