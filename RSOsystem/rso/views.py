@@ -123,15 +123,25 @@ def createRso(request):
             email=request.POST['RSO_email']
         )
 
+        allRSOs = RsoGroup.objects.all()
+
+        context = {
+            'allRSOs': allRSOs
+        }
+
         creator = User.objects.get(username=request.user.username)
         creator.is_staff = True
 
         admins = Group.objects.get(name='Admin')
         creator.groups.add(admins)
 
-        creator.save()
+        newRso.save()
+        newRso.students.add(creator.student)
         newRso.save()
 
-        return render(request, 'rso/index.html')
+
+        creator.save()
+
+        return render(request, 'rso/index.html', context=context    )
 
     return render(request, 'rso/createRso.html')

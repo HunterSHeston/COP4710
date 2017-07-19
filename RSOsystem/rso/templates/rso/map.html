@@ -50,6 +50,8 @@
                                         <th scope="row"></th>
                                         <td><b>Event Name</b></td>
                                         <td><b>Description</b></td>
+                                        <td>Where</td>
+                                        <td>When</td>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -58,6 +60,8 @@
                                             <th scope="row"></th>
                                             <td>{{ event.name }}</td>
                                             <td>{{ event.description }}</td>
+                                            <td>{{ event.location }}</td>
+                                            <td>{{ event.time }}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>
