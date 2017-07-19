@@ -115,6 +115,8 @@ def add(request, rsoID):
     rsos = RsoGroup.objects.all()
     return render(request, 'rso/joinRso.html', {'rsos': rsos})
 
+
+@login_required(login_url='/login/')
 def createRso(request):
 
     if request.method == 'POST':
