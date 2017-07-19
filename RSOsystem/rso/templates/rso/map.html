@@ -15,19 +15,15 @@
                         zoom: 13,
                         center: UCF,
                     });
-                    var marker1 = new google.maps.Marker({
-                        position: UCF,
-                        map: map
-
-                    });
 
                     {% for event in events %}
                         var point = new google.maps.LatLng({{ event.location.latitude }}, {{ event.location.longitude }});
 
-                        var marker2 = new google.maps.Marker({
+                        var marker = new google.maps.Marker({
                             position: point,
-                            map: map
+                            map: map,
                         });
+                        
                     {% endfor %}
                 }
             </script>
