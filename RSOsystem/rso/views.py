@@ -22,8 +22,7 @@ def index(request):
 
 def map(request):
 
-    # events = Event.objects.filter(visibility=Event.PUBLIC)
-    events = Event.objects.all()
+    events = Event.objects.filter(visibility=Event.PUBLIC)
 
     context = {
         'events': events,
