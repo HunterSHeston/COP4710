@@ -3,13 +3,9 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from geoposition.fields import GeopositionField
 
-
-
-import datetime
 
 
 class StudentManager(models.Manager):
@@ -33,12 +29,6 @@ class Student(models.Model):
     def __str__(self):
         return str(self.user.username)
 
-
-class Admin(models.Model):
-    student = models.OneToOneField(Student, on_delete=models.CASCADE, related_name='student')
-
-    def __str__(self):
-        return self.user.username
 
 
 class RsoGroup(models.Model):
@@ -70,6 +60,8 @@ class Event(models.Model):
     email = models.EmailField()
     phone = models.CharField(max_length=13)
 
+    time = models.DateTimeField( blank=True, null=True)
+
     location = GeopositionField(null=True, blank=True)
 
     PUBLIC = 'pub'
@@ -99,7 +91,6 @@ class Event(models.Model):
 
     rso = models.ForeignKey(RsoGroup, on_delete=models.CASCADE, blank=True, null=True, related_name='rso')
     university = models.ForeignKey(University, on_delete=models.CASCADE, related_name='university')
-    # admin = models.ForeignKey(Admin, on_delete=models.CASCADE, related_name='admin')
 
     def __str__(self):
         return self.name
