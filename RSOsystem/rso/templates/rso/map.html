@@ -21,12 +21,14 @@
 
                     });
 
-                    var info
+                    {% for event in events %}
+                        var point = new google.maps.LatLng({{ event.location.latitude }}, {{ event.location.longitude }});
 
-                    var marker2 = new google.maps.Marker({
-                        position: {lat: 28.60, lng: -81.2000},
-                        map: map
-                    });
+                        var marker2 = new google.maps.Marker({
+                            position: point,
+                            map: map
+                        });
+                    {% endfor %}
                 }
             </script>
 
