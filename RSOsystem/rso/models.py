@@ -11,13 +11,6 @@ from geoposition.fields import GeopositionField
 
 import datetime
 
-#
-
-# queries  can be done with'objects'
-# someModel.bojects.all()  yields all objects
-# someModel.bojects.filter( somefield='valueOfField' )  yields objects with column: someField and value: value of field
-# someModel.bojects.exclude( somefield='valueOfField' ) exclude objects with column: someField and value: value of field
-
 
 class StudentManager(models.Manager):
     def create_student(self, user):
@@ -67,8 +60,6 @@ class University(models.Model):
     email = models.EmailField()
     numStudents = models.IntegerField(verbose_name='Number of Student')
 
-    address = models.CharField(max_length=250)
-
     def __str__(self):
         return self.name
 
@@ -78,8 +69,6 @@ class Event(models.Model):
     name = models.CharField(max_length=40)
     email = models.EmailField()
     phone = models.CharField(max_length=13)
-
-    address = models.CharField(max_length=250)
 
     location = GeopositionField(null=True, blank=True)
 
